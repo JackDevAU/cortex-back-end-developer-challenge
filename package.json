@@ -1,37 +1,37 @@
 {
-  "name": "cortex-back-end-developer-challenge",
-  "version": "1.0.0",
-  "description": "In this test we would like you to create an API that will manage a player character’s Hit Points(HP). Clients will need to be able to do the following:\r - Deal damage of different types (bludgeoning, fire, etc) while considering character resistences and immunities\r - Heal\r - Add temporary hit points",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/app.js",
-    "lint": "eslint ./"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JackDevAU/cortex-back-end-developer-challenge.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JackDevAU/cortex-back-end-developer-challenge/issues"
-  },
-  "homepage": "https://github.com/JackDevAU/cortex-back-end-developer-challenge#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "helmet": "^4.1.1",
-    "mongoose": "^5.10.6",
-    "morgan": "^1.10.0"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "nodemon": "^2.0.4"
-  }
+    "name": "cortex-back-end-developer-challenge",
+    "version": "1.0.0",
+    "description": "In this test we would like you to create an API that will manage a player character’s Hit Points(HP). Clients will need to be able to do the following:\r - Deal damage of different types (bludgeoning, fire, etc) while considering character resistences and immunities\r - Heal\r - Add temporary hit points",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ./src/app.js",
+        "lint": "eslint ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JackDevAU/cortex-back-end-developer-challenge.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/JackDevAU/cortex-back-end-developer-challenge/issues"
+    },
+    "homepage": "https://github.com/JackDevAU/cortex-back-end-developer-challenge#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "helmet": "^4.1.1",
+        "mongoose": "^5.10.6",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "eslint": "^7.9.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-plugin-import": "^2.22.0",
+        "nodemon": "^2.0.4"
+    }
 }
