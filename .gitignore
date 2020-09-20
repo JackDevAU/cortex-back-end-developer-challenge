@@ -1,3 +1,5 @@
 .env
 node_modules/
 testing_briv.json
+src/config.*
+src/mongodb/provider.*

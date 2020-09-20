@@ -11,7 +11,6 @@ export const logErrorsDev = (err, req, res, next) => {
 };
 
 export const logErrosProduction = (err, req, res, next) => {
-    // res.status(500).json({ error: err.stack });
     res.status(err.status || 500);
     res.json({
         errors: {

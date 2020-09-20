@@ -8,7 +8,7 @@ import { isProduction } from '../config.js';
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        if (!isProduction) {
+        if (!isProduction || process.env.NODE_ENV) {
             mongoose.set('debug', true);
         }
 

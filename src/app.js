@@ -3,14 +3,28 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
-
-import './mongodb/provider.js';
+import mongoose from 'mongoose';
 
 import { logErrorsDev, logErrosProduction } from './errorlog.js';
 import characterRoutes from './routes/characters.js';
-import { isProduction } from './config.js';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
+
+try {
+    mongoose.connect(process.env.DATABASE || 'mongodb://localhost/dndapi', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    if (!isProduction) {
+        mongoose.set('debug', true);
+    }
+
+    console.info('Mongoose Connection successfully opened!');
+} catch (err) {
+    console.error(err);
+}
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
