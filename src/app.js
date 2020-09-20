@@ -13,7 +13,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
 try {
-    mongoose.connect(process.env.DATABASE || 'mongodb://localhost/dndapi', {
+    mongoose.connect(process.env.DATABASE || 'mongodb://mongo/dndapi', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
