@@ -1,47 +1,47 @@
 {
-  "name": "Briv",
-  "level": 5,
-  "hp": 1,
-  "maxhp": 1,
-  "temphp": 0,
-  "classes": [
-    {
-      "name": "fighter",
-      "hitDiceValue": 10,
-      "classLevel": 3
+    "name": "Briv",
+    "level": 5,
+    "hp": 1,
+    "maxhp": 1,
+    "temphp": 0,
+    "classes": [
+        {
+            "name": "fighter",
+            "hitDiceValue": 10,
+            "classLevel": 3
+        },
+        {
+            "name": "wizard",
+            "hitDiceValue": 6,
+            "classLevel": 2
+        }
+    ],
+    "stats": {
+        "strength": 15,
+        "dexterity": 12,
+        "constitution": 14,
+        "intelligence": 13,
+        "wisdom": 10,
+        "charisma": 8
     },
-    {
-      "name": "wizard",
-      "hitdicevalue": 6,
-      "classLevel": 2
-    }
-  ],
-  "stats": {
-    "strength": 15,
-    "dexterity": 12,
-    "constitution": 14,
-    "intelligence": 13,
-    "wisdom": 10,
-    "charisma": 8
-  },
-  "items": [
-    {
-      "name": "Ioun Stone of Fortitude",
-      "modifier": {
-        "affectedObject": "stats",
-        "affectedValue": "constitution",
-        "value": 2
-      }
-    }
-  ],
-  "defenses": [
-    {
-      "type": "fire",
-      "defense": "immunity"
-    },
-    {
-      "type": "slashing",
-      "defense": "resistance"
-    }
-  ]
+    "items": [
+        {
+            "name": "Ioun Stone of Fortitude",
+            "modifier": {
+                "affectedObject": "stats",
+                "affectedValue": "constitution",
+                "value": 2
+            }
+        }
+    ],
+    "defenses": [
+        {
+            "type": "fire",
+            "defense": "immunity"
+        },
+        {
+            "type": "slashing",
+            "defense": "resistance"
+        }
+    ]
 }

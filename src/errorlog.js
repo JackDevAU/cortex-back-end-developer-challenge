@@ -1,15 +1,23 @@
-export const logErrors = (err, req, res, next) => {
-  next(err);
-};
-
-export const clientError = (err, req, res, next) => {
-  if (req.xhr) {
-    res.status(500).json({ error: "Something failed!" });
-  } else {
+export const logErrorsDev = (err, req, res, next) => {
+    console.log(err.stack);
+    res.status(err.status || 500);
+    res.json({
+        error: {
+            message: err.message,
+            error: err,
+        },
+    });
     next(err);
-  }
 };
 
-export const serverError = (err, req, res, next) => {
-  res.status(500).json({ error: err.stack });
+export const logErrosProduction = (err, req, res, next) => {
+    // res.status(500).json({ error: err.stack });
+    res.status(err.status || 500);
+    res.json({
+        errors: {
+            message: 'Something went wrong..',
+            error: {},
+        },
+    });
+    next(err);
 };
