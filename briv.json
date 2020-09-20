@@ -1,9 +1,6 @@
 {
     "name": "Briv",
     "level": 5,
-    "hp": 1,
-    "maxhp": 1,
-    "temphp": 0,
     "classes": [
         {
             "name": "fighter",

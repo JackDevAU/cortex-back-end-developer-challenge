@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get('/', getAllCharacters);
 
-router.post('/', createCharacter);
+router.post('/:calcMethod', createCharacter);
 
 router.delete('/:id', deleteCharacter);
 

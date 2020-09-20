@@ -5,7 +5,14 @@ const { Schema, model } = pkg;
 const CharacterSchema = new Schema({
     name: { type: String, required: true },
     level: {
-        type: Number, required: true, min: 1, max: 20,
+        type: Number,
+        required: true,
+        min: 1,
+        max: 20,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value',
+        },
     },
     hp: {
         type: Number,
@@ -15,8 +22,22 @@ const CharacterSchema = new Schema({
             message: '{VALUE} is not an integer value',
         },
     },
-    maxhp: { type: Number, required: true },
-    temphp: { type: Number, required: true },
+    maxhp: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value',
+        },
+    },
+    temphp: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value',
+        },
+    },
     classes: [
         {
             name: { type: String, required: true },

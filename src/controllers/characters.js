@@ -1,10 +1,72 @@
-/* eslint-disable no-console */
-
 import { Character } from '../mongodb/models/character.js';
 
 export const createCharacter = async (req, res, next) => {
     /* Create a Character Randomly! */
+    /* -> calcMethod = rand || rounded */
+    try {
+        const { params, body } = req;
 
+        const calcMethod = params.calcMethod.toString().trim();
+        /* TODO: Might need to redo this one chief */
+        if (calcMethod === 'rand' || calcMethod === 'rounded') {
+            const newChar = new Character(body);
+
+            // Need to add these!?!
+            newChar.hp = 0;
+            newChar.temphp = 0;
+            newChar.maxhp = 0;
+
+            /* Take away first level of first class
+            /* + Add hitDiceValue! */
+            newChar.classes[0].classLevel -= 1;
+            newChar.hp += newChar.classes[0].hitDiceValue;
+
+            // eslint-disable-next-line max-len
+            const classHitDie = newChar.classes.map((charClass) => [charClass.hitDiceValue, charClass.classLevel]);
+
+            /* Check which calcMethod we are using!  */
+            switch (calcMethod) {
+                case 'rand': {
+                    let newHp = 0;
+                    classHitDie.forEach((rolls) => {
+                        for (let i = 0; i < rolls[1]; i++) {
+                            newHp = Math.floor(Math.random()
+                                    * (rolls[0] - 1 + 1)) + 1;
+                            newChar.hp += newHp;
+                        }
+                    });
+                    break;
+                }
+                case 'rounded': {
+                    let newHp = 0;
+                    classHitDie.forEach((rolls) => {
+                        /* Round up avg dice roll */
+                        for (let i = 0; i < rolls[1]; i++) {
+                            newHp = Math.ceil((1 + rolls[0]) / 2);
+                            newChar.hp += newHp;
+                        }
+                    });
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+
+            /* Add Constituion to hp + maxhp
+            /* -don't know if i need to do this per level? should be fine...  */
+            newChar.hp += Math.floor((newChar.stats.constitution - 10) / 2)
+                        * newChar.level;
+            newChar.maxhp = newChar.hp;
+
+            await newChar.save({ validateBeforeSave: true });
+            res.status(200).json(newChar);
+        } else {
+            throw Error('Wrong Params');
+        }
+    } catch (err) {
+        next(err);
+    }
 };
 
 export const deleteCharacter = async (req, res, next) => {
@@ -36,6 +98,7 @@ export const getCharacter = async (req, res, next) => {
 export const addTempHitPoints = async (req, res, next) => {
     try {
         if (req.body.tempHp === undefined) throw Error('Missing param');
+        if (req.body.tempHp < 0) throw Error('Has to be a positive number');
 
         const char = await Character.findOne({ _id: req.params.id });
 
@@ -56,8 +119,6 @@ export const updateCharacterHitPoints = async (req, res, next) => {
         if (req.body.dmgType === undefined) throw Error('Missing param');
 
         let hpMod = req.body.hp;
-
-        console.log(req.body);
 
         const char = await Character.findOne({ _id: req.params.id });
 
@@ -89,24 +150,20 @@ export const updateCharacterHitPoints = async (req, res, next) => {
                         }
                         default:
                             /* Do nothing! */
+                            break;
                     }
                 }
             });
         }
         /* Heal Character! */
         if (hpMod > 0) {
-            console.log(`adding hp! ${char.hp} : ${hpMod}`);
             char.hp += hpMod;
-            console.log(`New hp! ${char.hp}`);
         } else {
-            console.log(`taking hp! ${char.hp}`);
             /* Take away damage from temphp */
             char.temphp += hpMod;
 
             /* Deal Damage! */
             if (char.temphp < 0) char.hp -= Math.abs(char.temphp);
-
-            console.log(`new hp! ${char.hp}`);
         }
 
         /* Check temphp! No -Neg */
