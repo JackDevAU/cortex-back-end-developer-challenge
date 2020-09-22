@@ -3,6 +3,8 @@ version: '3.6'
 services:
   mongo:
     image: mongo
+  env_file:
+    - ./.env
 
   cortex:
     image: dndapi:latest

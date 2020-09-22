@@ -71,7 +71,12 @@ export const createCharacter = async (req, res, next) => {
 
 export const deleteCharacter = async (req, res, next) => {
     try {
-        res.status(200).json(await Character.deleteOne({ _id: req.params.id }));
+        const delChar = await Character.deleteOne({ _id: req.params.id });
+        if (delChar.deletedCount > 0) {
+            res.status(200).json(delChar);
+        } else {
+            throw Error('No character with that id found');
+        }
     } catch (err) {
         next(err);
     }
