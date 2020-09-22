@@ -3,8 +3,7 @@ version: '3.6'
 services:
   mongo:
     image: mongo
-  env_file:
-    - ./.env
+
 
   cortex:
     image: dndapi:latest
@@ -12,3 +11,5 @@ services:
       - mongo
     ports:
       - 3000:3000
+    env_file:
+      - ./.env
