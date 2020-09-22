@@ -32,7 +32,7 @@ router.get('/', getAllCharacters);
  * /characters/rand:
  *   post:
  *     summary: Random hit point generation method
- *     description: Used to create a new character - with the random Hit Point generation method
+ *     description: Used to create a new character - with the random Hit Point generation method <br> <strong>Copy briv.json into body!</strong>
  *     tags: [Characters, Create Character]
  *     produces:
  *       - application/json
@@ -52,7 +52,7 @@ router.get('/', getAllCharacters);
  * /characters/rounded:
  *   post:
  *     summary: Rounded Avg hit point generation method
- *     description: Used to create a new character - with the Rounded Avg Hit Point generation method
+ *     description: Used to create a new character - with the Rounded Avg Hit Point generation method <br> <strong>Copy briv.json into body!</strong>
  *     tags: [Characters, Create Character]
  *     produces:
  *       - application/json
